@@ -1,4 +1,5 @@
 #!/bin/bash
+set host-name frontend
 dnf install nginx -y 
 systemctl enable nginx 
 systemctl start nginx 
