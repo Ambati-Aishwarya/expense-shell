@@ -21,16 +21,16 @@ echo -n "clearing old web content:"
 rm -rf /user/share/nginx/html/*
 stat $?
 
-echo -n "downloading component content"
-curl -o /tmp/component.zip https://expense-web-app.s3.amazonaws.com/component.zip &>> $logfile
+echo -n "downloading $component content"
+curl -o /tmp/$component.zip https://expense-web-app.s3.amazonaws.com/$component.zip &>> $logfile
 stat $?
 
-echo -n "extracting component content"
+echo -n "extracting $component content"
 cd /usr/share/nginx/html 
-unzip /tmp/component.zip &>> $logfile
+unzip /tmp/$component.zip &>> $logfile
 stat $?
 
 echo -n "restarting nginix"
 systemctl restart nginx 
 stat $?
-echo -n "component executed sucessfully"
+echo -n "$component executed sucessfully"
