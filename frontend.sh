@@ -1,14 +1,13 @@
 #!/bin/bash
-echo -e "installing ngnix"
+echo -n "installing ngnix"
 dnf install nginx -y   &>> /tmp/frontend.log
 if [ $? -eq 0 ]; then
   echo -e "\e[32m success \e[0m"
   else
     echo -e "\e[31m failure \e[0m"
 fi
-echo -e "enabling ngnix"
 systemctl enable nginx &>> /tmp/frontend.log
-echo -e "starting ngnix"
+echo -n "starting ngnix"
 systemctl start nginx  &>> /tmp/frontend.log
 if [ $? -eq 0 ]; then
   echo -e "\e[32m success \e[0m"
