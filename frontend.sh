@@ -22,7 +22,7 @@ if [ $? -eq 0 ]; then
     echo -e "failure"
   fi
 echo -n "downloading frontend content"
-curl -o /tmp/frontend.zip https://expense-web-app.s3.amazonaws.com/frontend.zip
+sudo curl -o /tmp/frontend.zip https://expense-web-app.s3.amazonaws.com/frontend.zip
 if [ $? -eq 0 ]; then
   echo -e "\e[32m success \e[0m"
   else
