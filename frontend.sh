@@ -1,6 +1,6 @@
 #!/bin/bash
 
-component =frontend
+component=frontend
 logfile=/tmp/$component.log
 stat() {
 if [ $1 -eq 0 ]; then
