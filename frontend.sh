@@ -30,7 +30,7 @@ if [ $? -eq 0 ]; then
   fi
 echo -n "extracting frontend content"
 cd /usr/share/nginx/html 
-unzip /tmp/frontend.zip &>> /tmp/frontend.log
+unzip -o /tmp/frontend.zip &>> /tmp/frontend.log
 if [ $? -eq 0 ]; then
   echo -e "\e[32m success \e[0m"
   else
