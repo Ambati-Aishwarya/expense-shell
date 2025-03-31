@@ -35,6 +35,10 @@ echo -n "installing NodeJS:"
     curl -o /tmp/$component.zip https://expense-web-app.s3.amazonaws.com/backend.zip &>> $logfile
     stat $?
 
+    echo -n "configuring the permissions:"
+    chmod -R 755 /app && chown -R $appuser:$appuser /app &>> $logfile
+    stat $?
+
     echo -n "extracting $component content"
     cd /app/
     unzip -o /tmp/$component.zip &>> $logfile
@@ -42,10 +46,6 @@ echo -n "installing NodeJS:"
 
     echo -n "generating $component artifacts"
     npm install $>> $logfile
-    stat $?
-
-    echo -n "configuring the permissions:"
-    chmod -R 755 /app && chown -R $appuser:$appuser /app &>> $logfile
     stat $?
 
     echo -n "configuring systemd service:"
