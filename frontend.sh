@@ -2,15 +2,18 @@
 
 component =frontend
 logfile=/tmp/$component.log
-echo -n "installing ngnix"
-dnf install nginx -y   &>> $logfile
+stat() {
 if [ $1 -eq 0 ]; then
   echo -e "\e[32m success \e[0m"
   else
     echo -e "\e[31m failure \e[0m"
 fi
-systemctl enable nginx &>> $logfile
+}
+echo -n "installing ngnix"
+dnf install nginx -y   &>> $logfile
+
 echo -n "starting ngnix"
+systemctl enable nginx &>> $logfile
 systemctl start nginx  &>> $logfile
 stat $?
 echo -n "clearing old web content:"
