@@ -2,7 +2,7 @@
 echo -e "installing ngnix"
 dnf install nginx -y   &>> /tmp/frontend.log
 if [ $? -eq 0 ]; then
-  echo -e "ngnix installation sucess"
+  echo -e "ngnix installation success"
   else
     echo -e "ngnix installation failed"
   exit 1
@@ -12,9 +12,9 @@ systemctl enable nginx &>> /tmp/frontend.log
 echo -e "starting ngnix"
 systemctl start nginx  &>> /tmp/frontend.log
 if [ $? -eq 0 ]; then
-  echo -e "ngnix started sucess"
+  echo -e "success"
   else
-    echo -e "ngnix is failed"
+    echo -e "failure"
   exit 1
 fi
 # rm -rf /usr/share/nginx/html/* 
