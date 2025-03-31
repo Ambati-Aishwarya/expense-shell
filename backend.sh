@@ -49,7 +49,7 @@ echo -n "installing NodeJS:"
     stat $?
 
     echo -n "configuring systemd service:"
-    cp $component.service /etc/systemd/system/$component.service &>> $logfile
+    cp backend.service /etc/systemd/system/backend.service &>> $logfile
     stat $?
 
     echo -n "installing $component client:"
@@ -59,5 +59,13 @@ echo -n "installing NodeJS:"
     echo -n "injecting &component schema:"
     mysql -h localhost -u root -pExpenseApp@1 < /app/schema.sql &>> $logfile
     stat $?
+
+    echo -n "starting $component service:"
+    systemctl daemon-reload &>> $logfile
+    systemctl enable backend &>> $logfile
+    systemctl start backend &>> $logfile
+    stat $?
+
+    echo -n "***** $component execution completed *****"
  
  
