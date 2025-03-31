@@ -2,10 +2,10 @@
 echo -e "installing ngnix"
 dnf install nginx -y   &>> /tmp/frontend.log
 if [ $? -eq 0 ]; then
-  echo -e "ngnix installation success"
+  echo -e "\e[32m success \e[0m"
   else
-    echo -e "ngnix installation failed"
-  exit 1
+    echo -e "\e[31m failure \e[0m"
+    exit 1
 fi
 echo -e "enabling ngnix"
 systemctl enable nginx &>> /tmp/frontend.log
