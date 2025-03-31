@@ -16,16 +16,20 @@ echo -n "starting ngnix"
 systemctl enable nginx &>> $logfile
 systemctl start nginx  &>> $logfile
 stat $?
+
 echo -n "clearing old web content:"
 rm -rf /user/share/nginx/html/*
 stat $?
+
 echo -n "downloading component content"
 curl -o /tmp/component.zip https://expense-web-app.s3.amazonaws.com/component.zip &>> $logfile
 stat $?
+
 echo -n "extracting component content"
 cd /usr/share/nginx/html 
 unzip -o /tmp/component.zip &>> $logfile
 stat $?
+
 echo -n "restarting nginix"
 systemctl restart nginx 
 stat $?
