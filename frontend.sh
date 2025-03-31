@@ -1,10 +1,22 @@
 #!/bin/bash
 echo -e "installing ngnix"
 dnf install nginx -y   &>> /tmp/frontend.log
+if [ $? -eq 0 ]; then
+  echo -e "ngnix installation sucess"
+  else
+    echo -e "ngnix installation failed"
+  exit 1
+fi
 echo -e "enabling ngnix"
 systemctl enable nginx &>> /tmp/frontend.log
 echo -e "starting ngnix"
 systemctl start nginx  &>> /tmp/frontend.log
+if [ $? -eq 0 ]; then
+  echo -e "ngnix started sucess"
+  else
+    echo -e "ngnix is failed"
+  exit 1
+fi
 # rm -rf /usr/share/nginx/html/* 
 #curl -o /tmp/frontend.zip https://expense-web-app.s3.amazonaws.com/frontend.zip
 #cd /usr/share/nginx/html 
