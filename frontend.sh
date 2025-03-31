@@ -12,6 +12,10 @@ fi
 echo -n "installing ngnix"
 dnf install nginx -y   &>> $logfile
 
+echo -n "configuring proxy:"
+cp expense.conf /etc/nginx/default.d/ &>> $logfile
+stat $?
+
 echo -n "starting ngnix"
 systemctl enable nginx &>> $logfile
 systemctl start nginx  &>> $logfile
