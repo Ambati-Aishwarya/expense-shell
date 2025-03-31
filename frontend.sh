@@ -12,7 +12,7 @@ systemctl enable nginx &>> /tmp/frontend.log
 echo -e "starting ngnix"
 systemctl start nginx  &>> /tmp/frontend.log
 if [ $? -eq 0 ]; then
-  echo -e "\e[32m success \e[0m""
+  echo -e "\e[32m success \e[0m"
   else
     echo -e "failure"
   exit 1
