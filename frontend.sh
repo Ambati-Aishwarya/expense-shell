@@ -38,4 +38,5 @@ if [ $? -eq 0 ]; then
   fi
 echo -n "restarting nginix"
 systemctl restart nginx 
+
 echo -n "frontend executed sucessfully"
