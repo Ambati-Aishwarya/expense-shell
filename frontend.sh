@@ -22,7 +22,7 @@ rm -rf /user/share/nginx/html/*
 stat $?
 
 echo -n "downloading $component content"
-curl -o /tmp/$component.zip https://expense-web-app.s3.amazonaws.com/frontend.zip &>> $logfile
+curl -o  /tmp/$component.zip https://expense-web-app.s3.amazonaws.com/frontend.zip &>> $logfile
 stat $?
 
 echo -n "extracting $component content"
