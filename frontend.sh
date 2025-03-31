@@ -1,14 +1,16 @@
 #!/bin/bash
+
+component =frontend
 echo -n "installing ngnix"
-dnf install nginx -y   &>> /tmp/frontend.log
+dnf install nginx -y   &>> /tmp/component.log
 if [ $? -eq 0 ]; then
   echo -e "\e[32m success \e[0m"
   else
     echo -e "\e[31m failure \e[0m"
 fi
-systemctl enable nginx &>> /tmp/frontend.log
+systemctl enable nginx &>> /tmp/component.log
 echo -n "starting ngnix"
-systemctl start nginx  &>> /tmp/frontend.log
+systemctl start nginx  &>> /tmp/component.log
 if [ $? -eq 0 ]; then
   echo -e "\e[32m success \e[0m"
   else
@@ -21,16 +23,16 @@ if [ $? -eq 0 ]; then
   else
     echo -e "failure"
   fi
-echo -n "downloading frontend content"
-curl -o /tmp/frontend.zip https://expense-web-app.s3.amazonaws.com/frontend.zip
+echo -n "downloading component content"
+curl -o /tmp/component.zip https://expense-web-app.s3.amazonaws.com/component.zip
 if [ $? -eq 0 ]; then
   echo -e "\e[32m success \e[0m"
   else
     echo -e "failure"
   fi
-echo -n "extracting frontend content"
+echo -n "extracting component content"
 cd /usr/share/nginx/html 
-unzip -o /tmp/frontend.zip &>> /tmp/frontend.log
+unzip -o /tmp/component.zip &>> /tmp/component.log
 if [ $? -eq 0 ]; then
   echo -e "\e[32m success \e[0m"
   else
@@ -39,4 +41,4 @@ if [ $? -eq 0 ]; then
 echo -n "restarting nginix"
 systemctl restart nginx 
 
-echo -n "frontend executed sucessfully"
+echo -n "component executed sucessfully"
