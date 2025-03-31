@@ -22,11 +22,6 @@ echo -n "configuring proxy:"
 cp expense.conf /etc/nginx/default.d/ &>> $logfile
 stat $?
 
-echo -n "starting ngnix"
-systemctl enable nginx &>> $logfile
-systemctl start nginx  &>> $logfile
-stat $?
-
 echo -n "clearing old web content:"
 rm -rf /user/share/nginx/html/*
 stat $?
