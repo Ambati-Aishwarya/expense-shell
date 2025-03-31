@@ -27,7 +27,7 @@ stat $?
 
 echo -n "extracting component content"
 cd /usr/share/nginx/html 
-unzip -o /tmp/component.zip &>> $logfile
+unzip /tmp/component.zip &>> $logfile
 stat $?
 
 echo -n "restarting nginix"
