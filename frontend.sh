@@ -3,6 +3,7 @@ echo -e "installing ngnix"
 dnf install nginx -y   &>> /tmp/frontend.log
 if [ $? -eq 0 ]; then
   echo -e "\e[32m success \e[0m"
+  exit 0
   else
     echo -e "\e[31m failure \e[0m"
     exit 1
@@ -13,6 +14,7 @@ echo -e "starting ngnix"
 systemctl start nginx  &>> /tmp/frontend.log
 if [ $? -eq 0 ]; then
   echo -e "\e[32m success \e[0m"
+  exit 0
   else
     echo -e "failure"
   exit 1
