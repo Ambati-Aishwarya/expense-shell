@@ -20,6 +20,44 @@ echo -n "installing NodeJS:"
  stat $?
 
  echo -n "creating application user -$appUser :"
- mkdir /app
- useradd $appuser &>> $logfile
- stat $?
+
+ id $appuser &>> $logfile
+    if [ $? -eq 0 ]; then
+        echo -e "\e[32m user $appuser is already there, so not creating \e[0m"
+        echo -e "skipping"
+    else
+        useradd $appuser &>> $logfile
+        mkdir /app &>> $logfile
+        stat $?
+    
+    fi
+    echo -n "downloading $component content"
+    curl -o /tmp/$component.zip https://expense-web-app.s3.amazonaws.com/backend.zip &>> $logfile
+    stat $?
+
+    echo -n "extracting $component content"
+    cd /app/
+    unzip -o /tmp/$component.zip &>> $logfile
+    stat $?
+
+    echo -n "generating $component artifacts"
+    npm install $>> $logfile
+    stat $?
+
+    echo -n "configuring the permissions:"
+    chmod -R 755 /app && chown -R $appuser:$appuser /app &>> $logfile
+    stat $?
+
+    echo -n "configuring systemd service:"
+    cp $component.service /etc/systemd/system/$component.service &>> $logfile
+    stat $?
+
+    echo -n "installing $component client:"
+    dnf install mysql-sderver -y &>> $logfile
+    stat $?
+
+    echo -n "injecting &component schema:"
+    mysql -h localhost -u root -pExpenseApp@1 < /app/schema.sql &>> $logfile
+    stat $?
+ 
+ 
