@@ -26,8 +26,8 @@ curl -o /tmp/$component.zip https://expense-web-app.s3.amazonaws.com/frontend.zi
 stat $?
 
 echo -n "extracting $component content"
-cd /usr/share/nginx/html 
-unzip /tmp/$component.zip &>> $logfile
+cd  /usr/share/nginx/html 
+unzip -o /tmp/$component.zip &>> $logfile
 stat $?
 
 echo -n "restarting nginix"
