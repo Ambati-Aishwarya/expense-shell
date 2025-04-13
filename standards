@@ -1,0 +1,9 @@
+Non-Functional Requirements (NFR)
+Code should be dry
+credentials should not be hardcoded
+Re-run of the script should not fail
+
+DNS Records for internal components should always be private:
+
+1.Frontend:should be accessible from the internet, so we will be creating the DNS Record using Public-Ip-Address and we refer this as Public-DNS-Record
+git
