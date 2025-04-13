@@ -6,4 +6,8 @@ Re-run of the script should not fail
 DNS Records for internal components should always be private:
 
 1.Frontend:should be accessible from the internet, so we will be creating the DNS Record using Public-Ip-Address and we refer this as Public-DNS-Record
-git
+
+
+1) we will buy a domain on GODADDY
+2) we will create a public hosted zone on AWS(and copy the NS servers from this hosted zone )
+3) then on the ns section of the hosted zone on the domain provider update the NS with above one
